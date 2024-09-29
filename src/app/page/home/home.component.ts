@@ -14,14 +14,16 @@ export class HomeComponent {
   state = 'Todas'
   task: Task[] = [];
   taskFilter:Task[] = [];
+
   constructor(private taskService: TaskService){}
+
   ngOnInit(){
-    this.userServiceSubscription = this.taskService.tasks.subscribe(
-      currentTasks => {
-        this.task = currentTasks;
-        this.taskFilter = this.task;
-      }
-    );
+    console.log("llego")
+    this.taskService.getTaksApi().subscribe(data =>{
+      this.task = data;
+      this.taskFilter = data;
+    })
+    
     /*this.task = [
       {
         dateLimit:"1900-02-02",
@@ -67,7 +69,6 @@ export class HomeComponent {
   }
 
   changeFilter(){
-    console.log("llego")
     if(this.state != 'Todas'){
       this.taskFilter = this.task.filter(item=> item.state === this.state);
     }else{

@@ -61,12 +61,13 @@ export class CreateTaskComponent {
       dateLimit: this.taskForm.value['dateLimit']!,
       users: this.users
     }
-    this.taskService.addTask(data);
-    console.log(data)
-    this.openSnackBar('Tarea creada correctamente');
-    setTimeout(()=>{
-      this.back()
-    }, 1000)
+    this.taskService.createTaskApi(data).subscribe(res=>{
+      this.openSnackBar('Tarea creada correctamente');
+      setTimeout(()=>{
+        this.back()
+      }, 1000)
+    });
+    
   }
 
   createTask() {
