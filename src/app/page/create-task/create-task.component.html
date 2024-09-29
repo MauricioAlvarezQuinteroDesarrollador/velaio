@@ -1,0 +1,115 @@
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Crear tarea</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="form-task">
+        <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+          <mat-form-field>
+            <mat-label>Nombre de la tarea</mat-label>
+            <input formControlName="nameTask" matInput />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Fecha limite</mat-label>
+            <input type="date" formControlName="dateLimit" matInput />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <select matNativeControl formControlName="state">
+              <option value="Completada">Completada</option>
+              <option value="Pendiente">Pendiente</option>
+            </select>
+          </mat-form-field>
+          <button [disabled]="!taskForm.valid">Crear Tarea</button>
+        </form>
+      </div>
+
+      <div *ngIf="isUsers">
+        <mat-card appearance="outlined">
+          <mat-card-header>
+            <mat-card-title>Asociar Persona</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <form [formGroup]="userForm" (ngSubmit)="addUser()">
+              <div class="user">
+                <div>
+                  <div>
+                    <mat-form-field>
+                      <mat-label>Nombre Completo</mat-label>
+                      <input type="text" formControlName="nameUser" matInput />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Edad</mat-label>
+                      <input type="number" formControlName="age" matInput />
+                      
+                        <mat-error *ngIf="(userForm.controls.age.dirty || userForm.controls.age.touched) && userForm.controls.age.hasError('adult')"> La persona debe ser mayor de edad</mat-error>
+                      
+                    </mat-form-field>
+                    <div clas >
+                     
+                    </div>
+                  </div>
+
+                  <div>
+                    <p>Habilidades</p>
+
+                    <div>
+                      <mat-form-field>
+                        <mat-label>Ingresar Habilidad</mat-label>
+                        <input
+                          type="text"
+                          (keydown.enter)="addSkill($event)"
+                          id="skill"
+                          formControlName="skill"
+                          matInput
+                        />
+                      </mat-form-field>
+
+                      <button type="button" (click)="addSkill()">Añadir</button>
+                    </div>
+
+                    <div>
+                      <ul>
+                        <li *ngFor="let skill of skills; let i = index">
+                          {{ skill }}   
+                          <button style="width: auto;" type="button" (click)="deleteSkill(i)">
+                            Eliminar
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <button style="width: auto;"  [disabled]="!userForm.valid || skills.length === 0">
+                    Añadir Persona
+                  </button>
+                </div>
+              </div>
+
+              <div *ngIf="users.length > 0">
+                <p>Personas Asociadas</p>
+                <ul>
+                  <li *ngFor="let user of users; let i = index">
+                    {{ user.nameUser }} - {{ user.age }} -
+                    {{ user.skills.join(", ") }}
+                    <button style="margin-left: 15px;" type="button" (click)="deleteUser(i)">
+                      Eliminar
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <button class="save-task" type="button" [disabled]="!users.length || !taskForm.valid" (click)="submit()">Guardar Datos</button>
+      <button style="margin-left: 15px;" type="button"  (click)="back()"> Cancelar</button>
+    </mat-card-content>
+  </mat-card>
+</div>

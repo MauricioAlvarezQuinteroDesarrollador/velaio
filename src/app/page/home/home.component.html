@@ -1,0 +1,42 @@
+<div>
+  <h2>Lista de tareas</h2>
+
+  <div>
+    <div *ngIf="!task.length && !taskFilter.length">
+     No hay tareas Actualmente. <a routerLink="/create-task" routerLinkActive="active">Crear Tarea</a>
+    </div>
+    <div *ngIf="task.length">
+      <div class="filters">
+        <h2>Filtros:</h2>
+        <mat-radio-group
+          aria-label="Select an option"
+          [(ngModel)]="state"
+          (change)="changeFilter()"
+        >
+          <mat-radio-button value="Todas">Todas</mat-radio-button>
+          <mat-radio-button value="Completada">Completada</mat-radio-button>
+          <mat-radio-button value="Pendiente">Pendiente</mat-radio-button>
+        </mat-radio-group>
+        <a style="margin-left: auto;" routerLink="/create-task" routerLinkActive="active">Crear Tarea</a>
+      </div>
+
+      <div>
+        <div *ngFor="let task of taskFilter; let i = index" class="item-task">
+          <span>Tarea No {{ i + 1 }}. </span>
+          <b> {{ task.nameTask }}</b> - <span>{{ task.dateLimit }}</span> ->
+          <span> Estado: {{ task.state }}</span>
+
+          <div>
+            <p>Personas asociadas</p>
+            <ul>
+              <li *ngFor="let user of task.users">
+                <p>{{ user.nameUser }} ({{ user.age }})</p>
+                <p>Habilidades: {{ user.skills.join(", ") }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
