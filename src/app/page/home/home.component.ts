@@ -21,45 +21,7 @@ export class HomeComponent {
         this.task = currentTasks;
         this.taskFilter = this.task;
       }
-    );
-    /*this.task = [
-      {
-        dateLimit:"1900-02-02",
-        nameTask: "test",
-        state: "Completada",
-        users: [
-          {
-            nameUser: 'mauro',
-            age: 18,
-            skills:['js', 'java']
-          },
-          {
-            nameUser: 'mauro',
-            age: 18,
-            skills:['js', 'java']
-          },
-          {
-            nameUser: 'mauro',
-            age: 18,
-            skills:['js', 'java']
-          }
-        ]
-      },
-      {
-        dateLimit:"1900-02-02",
-        nameTask: "test",
-        state: "Pendiente",
-        users: [
-          {
-            nameUser: 'mauro',
-            age: 18,
-            skills:['js', 'java']
-          }
-        ]
-      },
-    ];*/
-    
-    
+    );    
   }
 
   ngOnDestroy(): void {
@@ -67,7 +29,7 @@ export class HomeComponent {
   }
 
   changeFilter(){
-    console.log("llego")
+    
     if(this.state != 'Todas'){
       this.taskFilter = this.task.filter(item=> item.state === this.state);
     }else{
