@@ -36,7 +36,7 @@ export class CreateTaskComponent {
   });
 
   userForm = this.fb.group({
-    nameUser: ['', [Validators.required, noWhiteSpaceValidator]],
+    nameUser: ['', [Validators.required, noWhiteSpaceValidator, Validators.minLength(5)]],
     age: ['', [Validators.required, adult]],
     skill: [''],
   });

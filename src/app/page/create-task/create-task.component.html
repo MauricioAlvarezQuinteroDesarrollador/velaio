@@ -40,6 +40,7 @@
                     <mat-form-field>
                       <mat-label>Nombre Completo</mat-label>
                       <input type="text" formControlName="nameUser" matInput />
+                      <mat-error *ngIf="(userForm.controls.nameUser.dirty || userForm.controls.nameUser.touched) && userForm.controls.nameUser.hasError('minlength')"> Debe tener como minimo 5 caracteres</mat-error>
                     </mat-form-field>
                     <mat-form-field>
                       <mat-label>Edad</mat-label>
@@ -48,13 +49,10 @@
                         <mat-error *ngIf="(userForm.controls.age.dirty || userForm.controls.age.touched) && userForm.controls.age.hasError('adult')"> La persona debe ser mayor de edad</mat-error>
                       
                     </mat-form-field>
-                    <div clas >
-                     
-                    </div>
                   </div>
 
                   <div>
-                    <p>Habilidades</p>
+                    <p style="margin-top:50px">Habilidades</p>
 
                     <div>
                       <mat-form-field>
