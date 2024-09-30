@@ -18,49 +18,11 @@ export class HomeComponent {
   constructor(private taskService: TaskService){}
 
   ngOnInit(){
-    console.log("llego")
+    
     this.taskService.getTaksApi().subscribe(data =>{
       this.task = data;
       this.taskFilter = data;
     })
-    
-    /*this.task = [
-      {
-        dateLimit:"1900-02-02",
-        nameTask: "test",
-        state: "Completada",
-        users: [
-          {
-            nameUser: 'mauro',
-            age: 18,
-            skills:['js', 'java']
-          },
-          {
-            nameUser: 'mauro',
-            age: 18,
-            skills:['js', 'java']
-          },
-          {
-            nameUser: 'mauro',
-            age: 18,
-            skills:['js', 'java']
-          }
-        ]
-      },
-      {
-        dateLimit:"1900-02-02",
-        nameTask: "test",
-        state: "Pendiente",
-        users: [
-          {
-            nameUser: 'mauro',
-            age: 18,
-            skills:['js', 'java']
-          }
-        ]
-      },
-    ];*/
-    
     
   }
 

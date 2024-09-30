@@ -100,7 +100,7 @@ export class CreateTaskComponent {
   addSkill(e: any = null) {
     if (e) e.preventDefault();
     if (this.userForm.get('skill')?.value?.trim())
-      this.skills.push(this.userForm.get('skill')?.value || '');
+      this.skills.push(this.userForm.get('skill')?.value?.trim() || '');
 
     this.userForm.patchValue({ skill: '' });
     this.renderer.selectRootElement('#skill').focus();
